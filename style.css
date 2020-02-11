@@ -31,7 +31,7 @@ body {
 }
 
 .quote {
-    margin: 1rem;
+    margin: 1rem 1rem 2rem;
 }
 
 .input {
@@ -50,3 +50,16 @@ body {
     .input:focus {
         border: 1px solid #eee;
     }
+
+.js-correct {
+    color: lime;
+}
+.js-incorrect {
+    color: coral;
+}
+
+.js-info {
+    color: cornflowerblue;
+    text-align: center;
+    margin-bottom: 2rem;
+}
