@@ -41,6 +41,7 @@ inputElem.addEventListener('input', () => {
             <h2 class="js-info">Correct!</h2>
             <h3 class="js-info">Get Ready! New quote comming!</h3>
         `;
+
         setTimeout(() => {
             renderNewQuote();
         }, 2000);
@@ -67,8 +68,25 @@ async function renderNewQuote() {
     });
 
     inputElem.value = null;
+
+    startTimer();
 }
 
-// TO DO TIMER FUNCTIONALITY
+// using Date() object for timer is more accurate than just setInterval
+let startTime;
+
+function startTimer() {
+    timerElem.innerText = 0;
+
+    startTime = new Date();
+
+    setInterval(() => {
+        timerElem.innerText = getTimertime();
+    }, 1000);
+}
+
+function getTimertime() {
+    return Math.floor((new Date() - startTime) / 1000);
+}
 
 renderNewQuote();
