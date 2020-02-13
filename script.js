@@ -1,7 +1,11 @@
-const apiUrl = 'http://api.quotable.io/random';
+const proxyBypass = 'https://cors-anywhere.herokuapp.com/';
+
+const apiUrl = `${proxyBypass}http://api.quotable.io/random`;
 const quoteElem = document.querySelector('#quote');
 const inputElem = document.querySelector('#input');
 const timerElem = document.querySelector('#timer');
+let score;
+const scoreElem = document.querySelector('#score');
 
 // adding eventlistener on every input
 inputElem.addEventListener('input', () => {
@@ -39,12 +43,17 @@ inputElem.addEventListener('input', () => {
     if (correct) {
         quoteElem.innerHTML = `
             <h2 class="js-info">Correct!</h2>
-            <h3 class="js-info">Get Ready! New quote comming!</h3>
+            <h3 class="js-info">Get Ready! New quote comming up!</h3>
         `;
+
+        score = timerElem.innerText;
+        scoreElem.innerText = score;
+        timerElem.style.display = 'none';
+        scoreElem.style.display = 'block';
 
         setTimeout(() => {
             renderNewQuote();
-        }, 2000);
+        }, 3000);
     }
 });
 
@@ -76,6 +85,9 @@ async function renderNewQuote() {
 let startTime;
 
 function startTimer() {
+    scoreElem.style.display = 'none';
+    timerElem.style.display = 'block';
+
     timerElem.innerText = 0;
 
     startTime = new Date();
